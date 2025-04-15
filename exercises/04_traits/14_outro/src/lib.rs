@@ -9,6 +9,81 @@
 //
 // Tests are located in the `tests` folder—pay attention to the visibility of your types and methods.
 
-type SaturatingU16 {
+
+use std::cmp::Ordering;
+use std::ops::Add;
+
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
+pub struct SaturatingU16 {
   value: u16
+}
+
+impl From<u16> for SaturatingU16 {
+  fn from(value: u16) -> Self {
+    SaturatingU16 { value }
+  }
+}
+
+impl From<u8> for SaturatingU16 {
+  fn from(value: u8) -> Self {
+    SaturatingU16 { value: value as u16 }
+  }
+}
+
+impl From<&u16> for SaturatingU16 {
+  fn from(value: &u16) -> Self {
+    SaturatingU16 { value: *value}
+  }
+}
+
+impl From<&u8> for SaturatingU16 {
+  fn from(value: &u8) -> Self {
+    SaturatingU16 { value: *value as u16 }
+  }
+}
+
+impl Add<u16> for SaturatingU16 {
+  type Output = SaturatingU16; 
+
+  fn add(self, n: u16) -> Self::Output{
+    SaturatingU16{
+      value: self.value.saturating_add(n),
+    }
+  }
+}
+
+impl Add<&u16> for SaturatingU16 { 
+  type Output = SaturatingU16;
+
+  fn add(self, n: &u16) -> Self::Output {
+    SaturatingU16 {
+      value: self.value.saturating_add(*n),
+    }
+  }
+}
+
+impl Add<SaturatingU16> for SaturatingU16{
+  type Output = SaturatingU16;
+
+  fn add(self, n: SaturatingU16) -> Self::Output {
+    SaturatingU16 {
+      value: self.value.saturating_add(n.value),
+    }
+  }
+}
+
+impl Add<&SaturatingU16> for SaturatingU16 {
+  type Output = SaturatingU16;
+
+  fn add(self, n: &SaturatingU16) -> Self::Output {
+    SaturatingU16 {
+      value: self.value.saturating_add(n.value),
+    }
+  }
+}
+
+impl PartialEq<u16> for SaturatingU16 {
+  fn eq(&self, other: &u16) -> bool {
+    self.value == *other
+  }
 }
