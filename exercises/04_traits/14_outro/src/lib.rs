@@ -8,3 +8,7 @@
 //   It should be possible to print its debug representation.
 //
 // Tests are located in the `tests` folder—pay attention to the visibility of your types and methods.
+
+type SaturatingU16 {
+  value: u16
+}
