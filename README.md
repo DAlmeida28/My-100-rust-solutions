@@ -1,6 +1,6 @@
-#These are My solutions to these 100 problems to learn rust. 
+# These are My solutions to these 100 problems to learn rust. 
 
-#Learn Rust, one exercise at a time
+# Learn Rust, one exercise at a time
 
 You've heard about Rust, but you never had the chance to try it out?\
 This course is for you!
