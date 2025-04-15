@@ -9,8 +9,6 @@
 //
 // Tests are located in the `tests` folder—pay attention to the visibility of your types and methods.
 
-
-use std::cmp::Ordering;
 use std::ops::Add;
 
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
